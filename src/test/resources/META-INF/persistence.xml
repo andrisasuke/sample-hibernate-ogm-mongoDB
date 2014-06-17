@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence-unit name="samplePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+
+    <!-- Use Hibernate OGM provider: configuration will be transparent -->
+    <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+
+    <class>com.andri.hibernate.sample.persistence.domain.Employee</class>
+    <class>com.andri.hibernate.sample.persistence.domain.Address</class>
+
+    <properties>
+            <!-- Configure Hibernate OGM to mount Infinispan -->
+            <property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider"/>
+            <property name="hibernate.ogm.datastore.database" value="sample-mongo-test"/>
+            <property name="hibernate.ogm.datastore.host" value="localhost"/>
+            <property name="hibernate.search.default.directory_provider" value="filesystem"/>
+            <property name="hibernate.search.default.indexBase" value="/tmp/.hibernate_ogm_demo_luceneindexes"/>
+
+            <property name="hibernate.ogm.datastore.grid_dialect" value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect" />
+
+
+    </properties>
+
+    </persistence-unit>
+</persistence>
